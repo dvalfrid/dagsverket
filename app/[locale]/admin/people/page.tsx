@@ -78,19 +78,34 @@ export default function PeopleAdmin() {
 
       <form onSubmit={add} className="card mt-4 flex flex-wrap items-end gap-3 p-4">
         <Field label={t("emoji")}>
-          <input value={emoji} onChange={(e) => setEmoji(e.target.value)} className={inputClass("w-16 text-center")} />
+          <input
+            value={emoji}
+            onChange={(e) => setEmoji(e.target.value)}
+            className={inputClass("w-16 text-center")}
+          />
         </Field>
         <Field label={t("color")}>
-          <input type="color" value={color} onChange={(e) => setColor(e.target.value)} className="h-9 w-16 rounded-lg border border-border bg-transparent" />
+          <input
+            type="color"
+            value={color}
+            onChange={(e) => setColor(e.target.value)}
+            className="h-9 w-16 rounded-lg border border-border bg-transparent"
+          />
         </Field>
         <Field label={t("name")}>
-          <input value={name} onChange={(e) => setName(e.target.value)} className={inputClass("min-w-40")} />
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className={inputClass("min-w-40")}
+          />
         </Field>
         <label className="flex items-center gap-1.5 pb-2 text-sm text-text-muted">
           <input type="checkbox" checked={isChild} onChange={(e) => setIsChild(e.target.checked)} />
           {t("isChild")}
         </label>
-        <Button type="submit" variant="primary">{t("add")}</Button>
+        <Button type="submit" variant="primary">
+          {t("add")}
+        </Button>
       </form>
     </>
   );

@@ -6,7 +6,11 @@ import { useLiveData, apiFetch } from "@/lib/useLiveData";
 import { Button, Field, inputClass } from "@/components/ui";
 import { PageTitle, ListCard, ListRow, DeleteButton } from "@/components/admin/parts";
 
-interface Person { id: string; name: string; avatarEmoji: string }
+interface Person {
+  id: string;
+  name: string;
+  avatarEmoji: string;
+}
 interface Chore {
   id: string;
   title: string;
@@ -18,8 +22,13 @@ interface Chore {
 
 const RECURRENCES = ["daily", "weekdays", "weekly", "custom"] as const;
 const DAY_BITS = [
-  ["monShort", 1], ["tueShort", 2], ["wedShort", 4], ["thuShort", 8],
-  ["friShort", 16], ["satShort", 32], ["sunShort", 64],
+  ["monShort", 1],
+  ["tueShort", 2],
+  ["wedShort", 4],
+  ["thuShort", 8],
+  ["friShort", 16],
+  ["satShort", 32],
+  ["sunShort", 64],
 ] as const;
 
 export default function ChoresAdmin() {
@@ -68,7 +77,9 @@ export default function ChoresAdmin() {
             >
               <option value="">–</option>
               {(people ?? []).map((p) => (
-                <option key={p.id} value={p.id}>{p.avatarEmoji} {p.name}</option>
+                <option key={p.id} value={p.id}>
+                  {p.avatarEmoji} {p.name}
+                </option>
               ))}
             </select>
             <select
@@ -82,7 +93,7 @@ export default function ChoresAdmin() {
                 </option>
               ))}
             </select>
-            {(c.recurrence === "weekly" || c.recurrence === "custom") ? (
+            {c.recurrence === "weekly" || c.recurrence === "custom" ? (
               <div className="flex gap-1">
                 {DAY_BITS.map(([label, bit]) => (
                   <button
@@ -107,20 +118,34 @@ export default function ChoresAdmin() {
               />
               {t("active")}
             </label>
-            <DeleteButton onConfirm={() => apiFetch(`/api/chores/${c.id}`, { method: "DELETE" }).then(() => mutate())} />
+            <DeleteButton
+              onConfirm={() =>
+                apiFetch(`/api/chores/${c.id}`, { method: "DELETE" }).then(() => mutate())
+              }
+            />
           </ListRow>
         ))}
       </ListCard>
 
       <form onSubmit={add} className="card mt-4 flex flex-wrap items-end gap-3 p-4">
         <Field label={t("choreTitle")}>
-          <input value={title} onChange={(e) => setTitle(e.target.value)} className={inputClass("min-w-44")} />
+          <input
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className={inputClass("min-w-44")}
+          />
         </Field>
         <Field label={t("person")}>
-          <select value={personId} onChange={(e) => setPersonId(e.target.value)} className={inputClass("w-40")}>
+          <select
+            value={personId}
+            onChange={(e) => setPersonId(e.target.value)}
+            className={inputClass("w-40")}
+          >
             <option value="">–</option>
             {(people ?? []).map((p) => (
-              <option key={p.id} value={p.id}>{p.avatarEmoji} {p.name}</option>
+              <option key={p.id} value={p.id}>
+                {p.avatarEmoji} {p.name}
+              </option>
             ))}
           </select>
         </Field>
@@ -131,7 +156,9 @@ export default function ChoresAdmin() {
             className={inputClass("w-40")}
           >
             {RECURRENCES.map((r) => (
-              <option key={r} value={r}>{t(`recurrence${r[0].toUpperCase()}${r.slice(1)}`)}</option>
+              <option key={r} value={r}>
+                {t(`recurrence${r[0].toUpperCase()}${r.slice(1)}`)}
+              </option>
             ))}
           </select>
         </Field>
@@ -143,7 +170,9 @@ export default function ChoresAdmin() {
                 key={bit}
                 onClick={() => setMask(mask ^ bit)}
                 className={`h-9 w-9 rounded-lg border text-xs ${
-                  mask & bit ? "border-accent bg-accent-soft text-accent" : "border-border text-text-subtle"
+                  mask & bit
+                    ? "border-accent bg-accent-soft text-accent"
+                    : "border-border text-text-subtle"
                 }`}
               >
                 {tw(label).slice(0, 1)}
@@ -151,7 +180,9 @@ export default function ChoresAdmin() {
             ))}
           </div>
         ) : null}
-        <Button type="submit" variant="primary">{t("add")}</Button>
+        <Button type="submit" variant="primary">
+          {t("add")}
+        </Button>
       </form>
     </>
   );

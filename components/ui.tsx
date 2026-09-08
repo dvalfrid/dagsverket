@@ -22,12 +22,7 @@ export function WidgetFrame({
   className?: string;
 }) {
   return (
-    <section
-      className={cn(
-        "card flex h-full min-h-0 flex-col overflow-hidden",
-        className,
-      )}
-    >
+    <section className={cn("card flex h-full min-h-0 flex-col overflow-hidden", className)}>
       <header className="flex items-center justify-between gap-3 border-b border-border px-5 py-3.5">
         <div className="flex items-center gap-2.5 text-text-muted">
           {icon}
@@ -71,13 +66,7 @@ export function Button({
   );
 }
 
-export function Field({
-  label,
-  children,
-}: {
-  label: string;
-  children: ReactNode;
-}) {
+export function Field({ label, children }: { label: string; children: ReactNode }) {
   return (
     <label className="flex flex-col gap-1.5 text-sm">
       <span className="font-medium text-text-muted">{label}</span>

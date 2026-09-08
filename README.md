@@ -10,14 +10,14 @@ på svenska och engelska.
 
 ## Teknik
 
-| | |
-|---|---|
-| Ramverk | Next.js 16 (App Router) + TypeScript + Tailwind CSS 4 |
-| Databas | SQLite via Prisma – en fil på en Docker-volym |
-| Realtid | Server-Sent Events (`/api/stream`) + SWR i klienten |
-| i18n | `next-intl` (`sv` standard, `en`) |
-| Kalender | `node-ical`, synkas via `node-cron` (varje timme) |
-| Auth | Delad admin-PIN (bcrypt), enhets-cookie signerad med `AUTH_SECRET` |
+|          |                                                                    |
+| -------- | ------------------------------------------------------------------ |
+| Ramverk  | Next.js 16 (App Router) + TypeScript + Tailwind CSS 4              |
+| Databas  | SQLite via Prisma – en fil på en Docker-volym                      |
+| Realtid  | Server-Sent Events (`/api/stream`) + SWR i klienten                |
+| i18n     | `next-intl` (`sv` standard, `en`)                                  |
+| Kalender | `node-ical`, synkas via `node-cron` (varje timme)                  |
+| Auth     | Delad admin-PIN (bcrypt), enhets-cookie signerad med `AUTH_SECRET` |
 
 ## Kom igång lokalt
 
@@ -34,14 +34,14 @@ default `1234`), gå till **Enheter**, para skärmen mot en profil – klart.
 
 ### Användbara skript
 
-| Skript | Gör |
-|---|---|
-| `npm run dev` | Utvecklingsserver |
-| `npm run build` / `npm start` | Produktionsbygge / -server |
-| `npm test` | Vitest (datumlogik, recurrence, ICS-parsning) |
-| `npm run db:migrate` | Ny migration i dev |
-| `npm run db:studio` | Prisma Studio |
-| `npm run db:reset` | Nollställ databasen + seed |
+| Skript                        | Gör                                           |
+| ----------------------------- | --------------------------------------------- |
+| `npm run dev`                 | Utvecklingsserver                             |
+| `npm run build` / `npm start` | Produktionsbygge / -server                    |
+| `npm test`                    | Vitest (datumlogik, recurrence, ICS-parsning) |
+| `npm run db:migrate`          | Ny migration i dev                            |
+| `npm run db:studio`           | Prisma Studio                                 |
+| `npm run db:reset`            | Nollställ databasen + seed                    |
 
 ## Distribuera på NAS (Docker)
 
@@ -64,10 +64,10 @@ Vill du hellre bygga själv från en klon: `docker compose up -d --build`.
 
 ### Gemensamt
 
-* Data ligger i den namngivna volymen `dagsverket-data` (`/data/dagsverket.db`).
-* Containern kör `prisma migrate deploy` och en idempotent seed vid varje start.
-* Nå dashboarden på `http://<nas-ip>:3000`.
-* Bygger bara för `linux/amd64` (de flesta NAS-Docker-värdar). ARM-NAS: se kommentaren i `.github/workflows/ci.yml`.
+- Data ligger i den namngivna volymen `dagsverket-data` (`/data/dagsverket.db`).
+- Containern kör `prisma migrate deploy` och en idempotent seed vid varje start.
+- Nå dashboarden på `http://<nas-ip>:3000`.
+- Bygger bara för `linux/amd64` (de flesta NAS-Docker-värdar). ARM-NAS: se kommentaren i `.github/workflows/ci.yml`.
 
 Byt admin-PIN i **Admin → Inställningar** efter första inloggningen.
 
@@ -82,11 +82,11 @@ Flödena är skrivskyddade i v1 – händelser skapas i Proton, inte här.
 
 ## Så fungerar profiler & enheter
 
-* **Person** – namn, färg, emoji. Sysslor kopplas till personer.
-* **Profil** – en uppsättning widgets (typ, storlek, ordning) + tema + språk +
+- **Person** – namn, färg, emoji. Sysslor kopplas till personer.
+- **Profil** – en uppsättning widgets (typ, storlek, ordning) + tema + språk +
   ev. kopplad person. Typ `child` ger en läsvänlig barnvy; `admin`/`family` når
   hela adminkonsolen.
-* **Enhet** – en iPad. Identifieras med en signerad cookie och paras mot en
+- **Enhet** – en iPad. Identifieras med en signerad cookie och paras mot en
   profil i adminkonsolen. Byt profil på en enhet när som helst – skärmen laddar
   om sig själv via SSE.
 
@@ -107,9 +107,9 @@ messages/{sv,en}.json     översättningar
 
 ## Miljövariabler
 
-| Variabel | Beskrivning |
-|---|---|
+| Variabel       | Beskrivning                                                                |
+| -------------- | -------------------------------------------------------------------------- |
 | `DATABASE_URL` | SQLite-sökväg. Lokalt `file:./dev.db`, i Docker `file:/data/dagsverket.db` |
-| `AUTH_SECRET` | ≥32 tecken. Signerar cookies. **Krävs.** |
-| `ADMIN_PIN` | Sätts som PIN vid första start (hashas sedan i databasen) |
-| `TZ` | Tidszon, t.ex. `Europe/Stockholm` |
+| `AUTH_SECRET`  | ≥32 tecken. Signerar cookies. **Krävs.**                                   |
+| `ADMIN_PIN`    | Sätts som PIN vid första start (hashas sedan i databasen)                  |
+| `TZ`           | Tidszon, t.ex. `Europe/Stockholm`                                          |

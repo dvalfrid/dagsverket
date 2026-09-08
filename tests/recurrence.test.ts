@@ -1,9 +1,5 @@
 import { describe, expect, it } from "vitest";
-import {
-  maskLabel,
-  occursOn,
-  occurrencesInRange,
-} from "../lib/recurrence";
+import { maskLabel, occursOn, occurrencesInRange } from "../lib/recurrence";
 
 // 2026-09-07 is a Monday.
 const MON = "2026-09-07";
@@ -31,9 +27,10 @@ describe("occursOn", () => {
 
 describe("occurrencesInRange", () => {
   it("lists every matching day inclusive", () => {
-    expect(
-      occurrencesInRange({ recurrence: "custom", weekdaysMask: 1 | 8 }, MON, SUN),
-    ).toEqual(["2026-09-07", "2026-09-10"]); // Mon + Thu
+    expect(occurrencesInRange({ recurrence: "custom", weekdaysMask: 1 | 8 }, MON, SUN)).toEqual([
+      "2026-09-07",
+      "2026-09-10",
+    ]); // Mon + Thu
   });
 });
 

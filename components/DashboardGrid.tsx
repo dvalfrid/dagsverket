@@ -51,11 +51,7 @@ export function DashboardGrid({
         return (
           <div
             key={config.id}
-            className={cn(
-              "h-full min-h-0",
-              COL_SPAN[config.size],
-              ROW_SPAN[config.size],
-            )}
+            className={cn("h-full min-h-0", COL_SPAN[config.size], ROW_SPAN[config.size])}
           >
             <Widget config={config} profile={profile} />
           </div>

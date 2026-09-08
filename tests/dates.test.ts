@@ -1,11 +1,5 @@
 import { describe, expect, it } from "vitest";
-import {
-  addDays,
-  isoWeek,
-  weekDays,
-  weekStart,
-  weekdayIndex,
-} from "../lib/dates";
+import { addDays, isoWeek, weekDays, weekStart, weekdayIndex } from "../lib/dates";
 
 describe("date keys", () => {
   it("addDays crosses months and years", () => {

@@ -1,8 +1,4 @@
-import ical, {
-  type CalendarComponent,
-  type CalendarResponse,
-  type VEvent,
-} from "node-ical";
+import ical, { type CalendarComponent, type CalendarResponse, type VEvent } from "node-ical";
 
 export interface ParsedEvent {
   externalId: string;
@@ -47,19 +43,11 @@ export async function fetchIcsEvents(
 }
 
 /** Same as {@link fetchIcsEvents} but from raw ICS text (used in tests). */
-export function parseIcsEvents(
-  text: string,
-  windowStart: Date,
-  windowEnd: Date,
-): ParsedEvent[] {
+export function parseIcsEvents(text: string, windowStart: Date, windowEnd: Date): ParsedEvent[] {
   return expandCalendar(ical.sync.parseICS(text), windowStart, windowEnd);
 }
 
-function expandCalendar(
-  data: CalendarResponse,
-  windowStart: Date,
-  windowEnd: Date,
-): ParsedEvent[] {
+function expandCalendar(data: CalendarResponse, windowStart: Date, windowEnd: Date): ParsedEvent[] {
   const out: ParsedEvent[] = [];
 
   for (const component of Object.values(data)) {

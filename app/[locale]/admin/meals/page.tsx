@@ -26,7 +26,9 @@ export default function MealsAdmin() {
   const to = days[6];
 
   const { data, mutate } = useLiveData<{ meals: Meal[] }>(`/api/meals?from=${from}&to=${to}`);
-  const byDate = new Map((data?.meals ?? []).filter((m) => m.slot === "dinner").map((m) => [m.date, m]));
+  const byDate = new Map(
+    (data?.meals ?? []).filter((m) => m.slot === "dinner").map((m) => [m.date, m]),
+  );
 
   async function save(date: string, title: string, notes: string) {
     const existing = byDate.get(date);
@@ -43,11 +45,17 @@ export default function MealsAdmin() {
       <PageTitle>{t("title")}</PageTitle>
 
       <div className="mb-4 flex items-center gap-3">
-        <button onClick={() => setFrom(addDays(from, -7))} className="rounded-lg border border-border p-2 hover:bg-surface-hover">
+        <button
+          onClick={() => setFrom(addDays(from, -7))}
+          className="rounded-lg border border-border p-2 hover:bg-surface-hover"
+        >
           <ChevronLeft size={16} />
         </button>
         <span className="text-sm font-medium">{tc("week", { n: isoWeek(from) })}</span>
-        <button onClick={() => setFrom(addDays(from, 7))} className="rounded-lg border border-border p-2 hover:bg-surface-hover">
+        <button
+          onClick={() => setFrom(addDays(from, 7))}
+          className="rounded-lg border border-border p-2 hover:bg-surface-hover"
+        >
           <ChevronRight size={16} />
         </button>
       </div>
@@ -97,7 +105,10 @@ function DayRow({
           value={title}
           placeholder={titlePlaceholder}
           onChange={(e) => setTitle(e.target.value)}
-          onBlur={() => (title !== (meal?.title ?? "") || notes !== (meal?.notes ?? "")) && onSave(date, title, notes)}
+          onBlur={() =>
+            (title !== (meal?.title ?? "") || notes !== (meal?.notes ?? "")) &&
+            onSave(date, title, notes)
+          }
           className={inputClass()}
         />
         <textarea

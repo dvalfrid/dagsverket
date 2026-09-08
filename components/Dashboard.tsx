@@ -56,10 +56,7 @@ export function Dashboard({ initial }: { initial: DashboardData }) {
   const showAdminLink = profile.type !== "child";
 
   return (
-    <div
-      data-theme={profile.theme}
-      className="flex min-h-screen flex-col bg-bg text-text"
-    >
+    <div data-theme={profile.theme} className="flex min-h-screen flex-col bg-bg text-text">
       <header className="flex items-center justify-between px-6 pt-5 pb-3 sm:px-8">
         <div className="flex items-center gap-3">
           {profile.person ? (

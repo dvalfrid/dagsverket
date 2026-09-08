@@ -5,11 +5,7 @@ import { Dashboard, type DashboardData } from "@/components/Dashboard";
 
 export const dynamic = "force-dynamic";
 
-export default async function DashboardPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
+export default async function DashboardPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const device = await resolveDevice();
 

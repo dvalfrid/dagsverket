@@ -13,23 +13,29 @@ const patchSchema = z.object({
   widgets: widgetsSchema.optional(),
 });
 
-export const PATCH = handler(async (req, { params }) => {
-  const { id } = await params;
-  const { widgets, ...rest } = await readJson(req, patchSchema);
-  const profile = await db.profile.update({
-    where: { id },
-    data: {
-      ...rest,
-      ...(widgets ? { widgetsJson: JSON.stringify(widgets) } : {}),
-    },
-  });
-  publish("profiles");
-  return ok(profile);
-}, { admin: true });
+export const PATCH = handler(
+  async (req, { params }) => {
+    const { id } = await params;
+    const { widgets, ...rest } = await readJson(req, patchSchema);
+    const profile = await db.profile.update({
+      where: { id },
+      data: {
+        ...rest,
+        ...(widgets ? { widgetsJson: JSON.stringify(widgets) } : {}),
+      },
+    });
+    publish("profiles");
+    return ok(profile);
+  },
+  { admin: true },
+);
 
-export const DELETE = handler(async (_req, { params }) => {
-  const { id } = await params;
-  await db.profile.delete({ where: { id } });
-  publish("profiles", "devices");
-  return ok({ ok: true });
-}, { admin: true });
+export const DELETE = handler(
+  async (_req, { params }) => {
+    const { id } = await params;
+    await db.profile.delete({ where: { id } });
+    publish("profiles", "devices");
+    return ok({ ok: true });
+  },
+  { admin: true },
+);

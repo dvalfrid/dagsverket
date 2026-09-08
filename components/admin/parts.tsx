@@ -19,9 +19,7 @@ export function ListCard({ children, className }: { children: ReactNode; classNa
 }
 
 export function ListRow({ children, className }: { children: ReactNode; className?: string }) {
-  return (
-    <div className={cn("flex items-center gap-3 px-4 py-3", className)}>{children}</div>
-  );
+  return <div className={cn("flex items-center gap-3 px-4 py-3", className)}>{children}</div>;
 }
 
 export function DeleteButton({ onConfirm }: { onConfirm: () => void }) {

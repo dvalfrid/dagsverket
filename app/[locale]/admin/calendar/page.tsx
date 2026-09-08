@@ -67,7 +67,9 @@ export default function CalendarAdmin() {
               />
               <input
                 defaultValue={feed.name}
-                onBlur={(e) => e.target.value !== feed.name && patch(feed.id, { name: e.target.value })}
+                onBlur={(e) =>
+                  e.target.value !== feed.name && patch(feed.id, { name: e.target.value })
+                }
                 className={inputClass("flex-1")}
               />
               <label className="flex shrink-0 items-center gap-1.5 text-xs text-text-muted">
@@ -82,7 +84,13 @@ export default function CalendarAdmin() {
                 <RefreshCw size={14} className={syncing === feed.id ? "animate-spin" : ""} />
                 {t("syncNow")}
               </Button>
-              <DeleteButton onConfirm={() => apiFetch(`/api/calendar/feeds/${feed.id}`, { method: "DELETE" }).then(() => mutate())} />
+              <DeleteButton
+                onConfirm={() =>
+                  apiFetch(`/api/calendar/feeds/${feed.id}`, { method: "DELETE" }).then(() =>
+                    mutate(),
+                  )
+                }
+              />
             </div>
             <input
               defaultValue={feed.url}
@@ -104,15 +112,31 @@ export default function CalendarAdmin() {
 
       <form onSubmit={add} className="card mt-4 flex flex-wrap items-end gap-3 p-4">
         <Field label={t("feedName")}>
-          <input value={name} onChange={(e) => setName(e.target.value)} className={inputClass("min-w-40")} />
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className={inputClass("min-w-40")}
+          />
         </Field>
         <Field label={t("url")}>
-          <input value={url} onChange={(e) => setUrl(e.target.value)} className={inputClass("min-w-72 font-mono text-xs")} placeholder="https://…/calendar.ics" />
+          <input
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            className={inputClass("min-w-72 font-mono text-xs")}
+            placeholder="https://…/calendar.ics"
+          />
         </Field>
         <Field label={t("color")}>
-          <input type="color" value={color} onChange={(e) => setColor(e.target.value)} className="h-9 w-16 rounded-lg border border-border bg-transparent" />
+          <input
+            type="color"
+            value={color}
+            onChange={(e) => setColor(e.target.value)}
+            className="h-9 w-16 rounded-lg border border-border bg-transparent"
+          />
         </Field>
-        <Button type="submit" variant="primary">{t("add")}</Button>
+        <Button type="submit" variant="primary">
+          {t("add")}
+        </Button>
       </form>
     </>
   );

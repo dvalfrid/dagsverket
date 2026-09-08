@@ -20,15 +20,25 @@ describe("parseWidgets", () => {
 
   it("keeps valid entries and fills defaults", () => {
     const parsed = parseWidgets(
-      JSON.stringify([{ id: "w1", type: "clock" }, { id: "w2", type: "calendar", size: "xl", options: { days: 30 } }]),
+      JSON.stringify([
+        { id: "w1", type: "clock" },
+        { id: "w2", type: "calendar", size: "xl", options: { days: 30 } },
+      ]),
     );
     expect(parsed).toHaveLength(2);
     expect(parsed[0]).toMatchObject({ id: "w1", type: "clock", size: "md", options: {} });
-    expect(parsed[1]).toMatchObject({ id: "w2", type: "calendar", size: "xl", options: { days: 30 } });
+    expect(parsed[1]).toMatchObject({
+      id: "w2",
+      type: "calendar",
+      size: "xl",
+      options: { days: 30 },
+    });
   });
 
   it("rejects unknown option keys (strict schema)", () => {
-    expect(parseWidgets(JSON.stringify([{ id: "w", type: "clock", options: { bogus: 1 } }]))).toEqual([]);
+    expect(
+      parseWidgets(JSON.stringify([{ id: "w", type: "clock", options: { bogus: 1 } }])),
+    ).toEqual([]);
   });
 });
 

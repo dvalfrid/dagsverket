@@ -7,13 +7,7 @@ import { EventEmitter } from "node:events";
  */
 
 export type DataKey =
-  | "people"
-  | "profiles"
-  | "devices"
-  | "chores"
-  | "calendar"
-  | "shopping"
-  | "meals";
+  "people" | "profiles" | "devices" | "chores" | "calendar" | "shopping" | "meals";
 
 export type BusEvent = { type: "invalidate"; keys: DataKey[]; at: number };
 

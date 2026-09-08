@@ -10,18 +10,21 @@ const schema = z.object({
   name: z.string().trim().min(1).optional(),
 });
 
-export const POST = handler(async (req) => {
-  const { code, profileId, name } = await readJson(req, schema);
+export const POST = handler(
+  async (req) => {
+    const { code, profileId, name } = await readJson(req, schema);
 
-  const device = await db.device.findUnique({
-    where: { pairingCode: code.toUpperCase() },
-  });
-  if (!device) return bad("unknown-code", 404);
+    const device = await db.device.findUnique({
+      where: { pairingCode: code.toUpperCase() },
+    });
+    if (!device) return bad("unknown-code", 404);
 
-  const profile = await db.profile.findUnique({ where: { id: profileId } });
-  if (!profile) return bad("unknown-profile", 404);
+    const profile = await db.profile.findUnique({ where: { id: profileId } });
+    if (!profile) return bad("unknown-profile", 404);
 
-  const updated = await pairDevice(device.id, profileId, name);
-  publish("devices");
-  return ok({ id: updated.id, name: updated.name, profileId });
-}, { admin: true });
+    const updated = await pairDevice(device.id, profileId, name);
+    publish("devices");
+    return ok({ id: updated.id, name: updated.name, profileId });
+  },
+  { admin: true },
+);

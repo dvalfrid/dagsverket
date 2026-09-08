@@ -25,7 +25,9 @@ async function ensureSettings() {
     await db.setting.create({
       data: { key: "admin_pin_hash", value: await bcrypt.hash(pin, 10) },
     });
-    console.log(`  seeded admin PIN from ADMIN_PIN (${pin === "1234" ? "default 1234" : "custom"})`);
+    console.log(
+      `  seeded admin PIN from ADMIN_PIN (${pin === "1234" ? "default 1234" : "custom"})`,
+    );
   }
 }
 
@@ -36,10 +38,18 @@ async function seedFamily() {
   }
 
   const [p1, p2, k1, k2] = await Promise.all([
-    db.person.create({ data: { name: "Förälder 1", color: "#6c8cff", avatarEmoji: "🧔", sortOrder: 0 } }),
-    db.person.create({ data: { name: "Förälder 2", color: "#3ecf8e", avatarEmoji: "👩", sortOrder: 1 } }),
-    db.person.create({ data: { name: "Barn 1", color: "#f5b544", avatarEmoji: "🦊", isChild: true, sortOrder: 2 } }),
-    db.person.create({ data: { name: "Barn 2", color: "#ff6b6b", avatarEmoji: "🐰", isChild: true, sortOrder: 3 } }),
+    db.person.create({
+      data: { name: "Förälder 1", color: "#6c8cff", avatarEmoji: "🧔", sortOrder: 0 },
+    }),
+    db.person.create({
+      data: { name: "Förälder 2", color: "#3ecf8e", avatarEmoji: "👩", sortOrder: 1 },
+    }),
+    db.person.create({
+      data: { name: "Barn 1", color: "#f5b544", avatarEmoji: "🦊", isChild: true, sortOrder: 2 },
+    }),
+    db.person.create({
+      data: { name: "Barn 2", color: "#ff6b6b", avatarEmoji: "🐰", isChild: true, sortOrder: 3 },
+    }),
   ]);
 
   await db.profile.create({
@@ -81,10 +91,28 @@ async function seedFamily() {
     data: [
       { title: "Duka bordet", personId: k1.id, recurrence: "daily", sortOrder: 0 },
       { title: "Tömma diskmaskinen", personId: k2.id, recurrence: "daily", sortOrder: 1 },
-      { title: "Ta ut soporna", personId: p1.id, recurrence: "weekly", weekdaysMask: MON, sortOrder: 2 },
-      { title: "Vattna blommorna", personId: k1.id, recurrence: "custom", weekdaysMask: MON | THU, sortOrder: 3 },
+      {
+        title: "Ta ut soporna",
+        personId: p1.id,
+        recurrence: "weekly",
+        weekdaysMask: MON,
+        sortOrder: 2,
+      },
+      {
+        title: "Vattna blommorna",
+        personId: k1.id,
+        recurrence: "custom",
+        weekdaysMask: MON | THU,
+        sortOrder: 3,
+      },
       { title: "Dammsuga", personId: p2.id, recurrence: "weekly", weekdaysMask: FRI, sortOrder: 4 },
-      { title: "Städa rummet", personId: k2.id, recurrence: "weekly", weekdaysMask: SAT, sortOrder: 5 },
+      {
+        title: "Städa rummet",
+        personId: k2.id,
+        recurrence: "weekly",
+        weekdaysMask: SAT,
+        sortOrder: 5,
+      },
       { title: "Läsläxa", personId: k1.id, recurrence: "weekdays", sortOrder: 6 },
     ],
   });
@@ -116,15 +144,30 @@ async function seedFamily() {
   await db.shoppingItem.createMany({
     data: [
       { name: "Mjölk", quantity: "2 l", category: "Mejeri", sortOrder: 0, addedByPersonId: p1.id },
-      { name: "Ägg", quantity: "12-pack", category: "Mejeri", sortOrder: 1, addedByPersonId: p1.id },
+      {
+        name: "Ägg",
+        quantity: "12-pack",
+        category: "Mejeri",
+        sortOrder: 1,
+        addedByPersonId: p1.id,
+      },
       { name: "Knäckebröd", category: "Skafferi", sortOrder: 2, addedByPersonId: p2.id },
       { name: "Smör", category: "Mejeri", sortOrder: 3, addedByPersonId: p2.id },
       { name: "Kaffe", category: "Skafferi", sortOrder: 4, addedByPersonId: p1.id },
-      { name: "Bananer", quantity: "1 klase", category: "Frukt", checked: true, sortOrder: 5, addedByPersonId: k1.id },
+      {
+        name: "Bananer",
+        quantity: "1 klase",
+        category: "Frukt",
+        checked: true,
+        sortOrder: 5,
+        addedByPersonId: k1.id,
+      },
     ],
   });
 
-  console.log("  seeded 4 people, 4 profiles, 7 chores, 1 feed, a week of dinners, 6 shopping items");
+  console.log(
+    "  seeded 4 people, 4 profiles, 7 chores, 1 feed, a week of dinners, 6 shopping items",
+  );
 }
 
 async function main() {

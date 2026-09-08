@@ -24,7 +24,10 @@ export const GET = handler(async (req) => {
     where: { date: { gte: from, lte: to }, choreId: { in: chores.map((c) => c.id) } },
   });
 
-  const byChore = new Map<string, Record<string, { personId: string | null; completedAt: string }>>();
+  const byChore = new Map<
+    string,
+    Record<string, { personId: string | null; completedAt: string }>
+  >();
   for (const c of completions) {
     const map = byChore.get(c.choreId) ?? {};
     map[c.date] = { personId: c.personId, completedAt: c.completedAt.toISOString() };
@@ -56,9 +59,12 @@ const createSchema = z.object({
   sortOrder: z.number().int().optional(),
 });
 
-export const POST = handler(async (req) => {
-  const data = await readJson(req, createSchema);
-  const chore = await db.chore.create({ data });
-  publish("chores");
-  return ok(chore, { status: 201 });
-}, { admin: true });
+export const POST = handler(
+  async (req) => {
+    const data = await readJson(req, createSchema);
+    const chore = await db.chore.create({ data });
+    publish("chores");
+    return ok(chore, { status: 201 });
+  },
+  { admin: true },
+);

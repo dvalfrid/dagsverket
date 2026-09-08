@@ -1,12 +1,6 @@
 import { z } from "zod";
 
-export const WIDGET_TYPES = [
-  "clock",
-  "calendar",
-  "chores",
-  "shopping",
-  "meals",
-] as const;
+export const WIDGET_TYPES = ["clock", "calendar", "chores", "shopping", "meals"] as const;
 export type WidgetType = (typeof WIDGET_TYPES)[number];
 
 export const WIDGET_SIZES = ["sm", "md", "lg", "xl"] as const;

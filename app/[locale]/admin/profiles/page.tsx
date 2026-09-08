@@ -7,7 +7,11 @@ import { Button, inputClass } from "@/components/ui";
 import { PageTitle } from "@/components/admin/parts";
 import { ProfileEditor, type AdminProfile } from "@/components/admin/ProfileEditor";
 
-interface Person { id: string; name: string; avatarEmoji: string }
+interface Person {
+  id: string;
+  name: string;
+  avatarEmoji: string;
+}
 
 export default function ProfilesAdmin() {
   const t = useTranslations("admin.profiles");
@@ -45,7 +49,9 @@ export default function ProfilesAdmin() {
           placeholder={t("name")}
           className={inputClass("min-w-48")}
         />
-        <Button type="submit" variant="primary">{t("add")}</Button>
+        <Button type="submit" variant="primary">
+          {t("add")}
+        </Button>
       </form>
     </>
   );

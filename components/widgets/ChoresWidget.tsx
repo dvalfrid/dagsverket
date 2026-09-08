@@ -41,10 +41,7 @@ export function ChoresWidget({ config, profile }: WidgetProps) {
 
   const { data, mutate } = useLiveData<ChoresResponse>(url);
   const { data: people } = useLiveData<Person[]>("/api/people");
-  const peopleById = useMemo(
-    () => new Map((people ?? []).map((p) => [p.id, p])),
-    [people],
-  );
+  const peopleById = useMemo(() => new Map((people ?? []).map((p) => [p.id, p])), [people]);
 
   const today = data?.range.today ?? todayKey();
   const days = weekDays(from);
@@ -57,7 +54,8 @@ export function ChoresWidget({ config, profile }: WidgetProps) {
         if (c.id !== choreId) return c;
         const completions = { ...c.completions };
         if (done) delete completions[date];
-        else completions[date] = { personId: personId ?? null, completedAt: new Date().toISOString() };
+        else
+          completions[date] = { personId: personId ?? null, completedAt: new Date().toISOString() };
         return { ...c, completions };
       }),
     };
@@ -72,7 +70,11 @@ export function ChoresWidget({ config, profile }: WidgetProps) {
   }
 
   if (!data) {
-    return <WidgetFrame title={t("title")} icon={<ListChecks size={16} />}><EmptyState>…</EmptyState></WidgetFrame>;
+    return (
+      <WidgetFrame title={t("title")} icon={<ListChecks size={16} />}>
+        <EmptyState>…</EmptyState>
+      </WidgetFrame>
+    );
   }
 
   const todays = data.chores.filter((c) => c.occurrences.includes(today));

@@ -136,9 +136,7 @@ function CalendarAgenda({ config }: Pick<WidgetProps, "config">) {
           </ul>
         </>
       )}
-      {selected ? (
-        <EventDetail event={selected} onClose={() => setSelected(null)} />
-      ) : null}
+      {selected ? <EventDetail event={selected} onClose={() => setSelected(null)} /> : null}
     </WidgetFrame>
   );
 }

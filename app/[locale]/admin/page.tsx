@@ -34,12 +34,8 @@ export default function AdminOverview() {
             href={s.href}
             className="card p-5 transition-colors hover:bg-surface-hover"
           >
-            <p className="text-xs uppercase tracking-wide text-text-subtle">
-              {t(`nav.${s.key}`)}
-            </p>
-            <p className={cn("mt-2 text-3xl font-semibold tabular-nums")}>
-              {s.value ?? "–"}
-            </p>
+            <p className="text-xs uppercase tracking-wide text-text-subtle">{t(`nav.${s.key}`)}</p>
+            <p className={cn("mt-2 text-3xl font-semibold tabular-nums")}>{s.value ?? "–"}</p>
           </Link>
         ))}
       </div>

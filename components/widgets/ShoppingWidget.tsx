@@ -61,7 +61,10 @@ export function ShoppingWidget({ profile }: WidgetProps) {
   }
 
   async function remove(item: Item) {
-    mutate(items.filter((i) => i.id !== item.id), { revalidate: false });
+    mutate(
+      items.filter((i) => i.id !== item.id),
+      { revalidate: false },
+    );
     try {
       await apiFetch(`/api/shopping/${item.id}`, { method: "DELETE" });
     } finally {
@@ -70,7 +73,10 @@ export function ShoppingWidget({ profile }: WidgetProps) {
   }
 
   async function clearChecked() {
-    mutate(items.filter((i) => !i.checked), { revalidate: false });
+    mutate(
+      items.filter((i) => !i.checked),
+      { revalidate: false },
+    );
     try {
       await apiFetch("/api/shopping/clear-checked", { method: "POST" });
     } finally {
@@ -84,10 +90,7 @@ export function ShoppingWidget({ profile }: WidgetProps) {
       icon={<ShoppingCart size={16} />}
       action={
         checked.length > 0 ? (
-          <button
-            onClick={clearChecked}
-            className="text-xs text-text-subtle hover:text-text"
-          >
+          <button onClick={clearChecked} className="text-xs text-text-subtle hover:text-text">
             {t("clearChecked")}
           </button>
         ) : null

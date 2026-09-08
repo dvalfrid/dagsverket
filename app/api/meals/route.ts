@@ -26,13 +26,16 @@ const upsertSchema = z.object({
 });
 
 /** Upsert a meal for a (date, slot). */
-export const POST = handler(async (req) => {
-  const data = await readJson(req, upsertSchema);
-  const meal = await db.mealPlan.upsert({
-    where: { date_slot: { date: data.date, slot: data.slot } },
-    update: { title: data.title, recipeUrl: data.recipeUrl ?? null, notes: data.notes ?? null },
-    create: data,
-  });
-  publish("meals");
-  return ok(meal, { status: 201 });
-}, { admin: true });
+export const POST = handler(
+  async (req) => {
+    const data = await readJson(req, upsertSchema);
+    const meal = await db.mealPlan.upsert({
+      where: { date_slot: { date: data.date, slot: data.slot } },
+      update: { title: data.title, recipeUrl: data.recipeUrl ?? null, notes: data.notes ?? null },
+      create: data,
+    });
+    publish("meals");
+    return ok(meal, { status: 201 });
+  },
+  { admin: true },
+);

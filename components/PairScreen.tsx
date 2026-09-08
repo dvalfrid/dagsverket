@@ -6,9 +6,7 @@ import { useRouter } from "@/i18n/navigation";
 import { MonitorSmartphone, Loader2 } from "lucide-react";
 import { useLiveData } from "@/lib/useLiveData";
 
-type DeviceMe =
-  | { paired: false; pairingCode: string; device: { name: string } }
-  | { paired: true };
+type DeviceMe = { paired: false; pairingCode: string; device: { name: string } } | { paired: true };
 
 export function PairScreen() {
   const t = useTranslations("pair");

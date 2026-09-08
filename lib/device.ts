@@ -2,7 +2,13 @@ import type { Device, Profile } from "@prisma/client";
 import { db } from "./db";
 import { readDeviceId, writeDeviceId } from "./auth";
 
-export type DeviceWithProfile = Device & { profile: (Profile & { person: { id: string; name: string; color: string; avatarEmoji: string } | null }) | null };
+export type DeviceWithProfile = Device & {
+  profile:
+    | (Profile & {
+        person: { id: string; name: string; color: string; avatarEmoji: string } | null;
+      })
+    | null;
+};
 
 const CODE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // no I/O/0/1
 

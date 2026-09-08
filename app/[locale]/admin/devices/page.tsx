@@ -35,9 +35,7 @@ export default function DevicesAdmin() {
         </h2>
         {data && data.pending.length > 1 ? (
           <button
-            onClick={() =>
-              apiFetch("/api/devices/prune", { method: "POST" }).then(() => mutate())
-            }
+            onClick={() => apiFetch("/api/devices/prune", { method: "POST" }).then(() => mutate())}
             className="text-xs text-text-subtle hover:text-danger"
           >
             {t("clearPending")}
@@ -65,7 +63,10 @@ export default function DevicesAdmin() {
                 defaultValue={d.name}
                 onBlur={(e) =>
                   e.target.value !== d.name &&
-                  apiFetch(`/api/devices/${d.id}`, { method: "PATCH", json: { name: e.target.value } }).then(() => mutate())
+                  apiFetch(`/api/devices/${d.id}`, {
+                    method: "PATCH",
+                    json: { name: e.target.value },
+                  }).then(() => mutate())
                 }
                 className={inputClass("flex-1")}
               />
@@ -80,13 +81,19 @@ export default function DevicesAdmin() {
                 className={inputClass("w-44")}
               >
                 {(profiles ?? []).map((p) => (
-                  <option key={p.id} value={p.id}>{p.name}</option>
+                  <option key={p.id} value={p.id}>
+                    {p.name}
+                  </option>
                 ))}
               </select>
               <span className="w-32 shrink-0 text-right text-xs text-text-subtle">
                 {d.lastSeenAt ? f.relativeTime(new Date(d.lastSeenAt)) : t("never")}
               </span>
-              <DeleteButton onConfirm={() => apiFetch(`/api/devices/${d.id}`, { method: "DELETE" }).then(() => mutate())} />
+              <DeleteButton
+                onConfirm={() =>
+                  apiFetch(`/api/devices/${d.id}`, { method: "DELETE" }).then(() => mutate())
+                }
+              />
             </ListRow>
           ))
         ) : (
@@ -126,7 +133,11 @@ function PendingRow({
 
   return (
     <ListRow>
-      <span className={cn("shrink-0 rounded-lg bg-surface-2 px-2.5 py-1 font-mono text-sm tracking-widest")}>
+      <span
+        className={cn(
+          "shrink-0 rounded-lg bg-surface-2 px-2.5 py-1 font-mono text-sm tracking-widest",
+        )}
+      >
         {device.pairingCode}
       </span>
       <input
@@ -135,9 +146,15 @@ function PendingRow({
         onChange={(e) => setName(e.target.value)}
         className={inputClass("flex-1")}
       />
-      <select value={profileId} onChange={(e) => setProfileId(e.target.value)} className={inputClass("w-44")}>
+      <select
+        value={profileId}
+        onChange={(e) => setProfileId(e.target.value)}
+        className={inputClass("w-44")}
+      >
         {profiles.map((p) => (
-          <option key={p.id} value={p.id}>{p.name}</option>
+          <option key={p.id} value={p.id}>
+            {p.name}
+          </option>
         ))}
       </select>
       <Button variant="primary" onClick={pair} disabled={busy || !profileId}>

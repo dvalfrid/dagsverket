@@ -154,10 +154,7 @@ export function CalendarWeek({
           {days.map((d, i) => (
             <div
               key={d}
-              className={cn(
-                "relative border-l border-border",
-                d === today && "bg-accent-soft/40",
-              )}
+              className={cn("relative border-l border-border", d === today && "bg-accent-soft/40")}
             >
               {hours.map((h) => (
                 <div
@@ -213,9 +210,7 @@ export function CalendarWeek({
         </div>
       </div>
 
-      {selected ? (
-        <EventDetail event={selected} onClose={() => setSelected(null)} />
-      ) : null}
+      {selected ? <EventDetail event={selected} onClose={() => setSelected(null)} /> : null}
     </div>
   );
 }

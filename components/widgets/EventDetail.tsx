@@ -18,13 +18,7 @@ export interface CalEvent {
 }
 
 /** Modal with every attribute we have for a calendar event. */
-export function EventDetail({
-  event,
-  onClose,
-}: {
-  event: CalEvent;
-  onClose: () => void;
-}) {
+export function EventDetail({ event, onClose }: { event: CalEvent; onClose: () => void }) {
   const t = useTranslations("widget.calendar");
   const f = useFormatter();
 
@@ -43,10 +37,7 @@ export function EventDetail({
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
       onClick={onClose}
     >
-      <div
-        className="card w-full max-w-sm space-y-3 p-5"
-        onClick={(e) => e.stopPropagation()}
-      >
+      <div className="card w-full max-w-sm space-y-3 p-5" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-start justify-between gap-3">
           <h3 className="text-base font-semibold" style={{ color: event.color }}>
             {event.title}

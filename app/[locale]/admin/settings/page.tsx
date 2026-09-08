@@ -29,7 +29,11 @@ export default function SettingsAdmin() {
         <Field label={t("timezone")}>
           <input
             defaultValue={data?.timezone ?? ""}
-            onBlur={(e) => e.target.value && e.target.value !== data?.timezone && save({ timezone: e.target.value })}
+            onBlur={(e) =>
+              e.target.value &&
+              e.target.value !== data?.timezone &&
+              save({ timezone: e.target.value })
+            }
             className={inputClass()}
           />
         </Field>

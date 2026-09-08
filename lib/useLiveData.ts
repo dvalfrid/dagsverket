@@ -64,8 +64,7 @@ function startSse() {
         const prefixes = keys.map((k) => KEY_PREFIX[k]).filter(Boolean);
         if (prefixes.length) {
           mutate(
-            (swrKey) =>
-              typeof swrKey === "string" && prefixes.some((p) => swrKey.startsWith(p)),
+            (swrKey) => typeof swrKey === "string" && prefixes.some((p) => swrKey.startsWith(p)),
             undefined,
             { revalidate: true },
           );

@@ -10,17 +10,23 @@ const patchSchema = z.object({
   notes: z.string().trim().nullable().optional(),
 });
 
-export const PATCH = handler(async (req, { params }) => {
-  const { id } = await params;
-  const data = await readJson(req, patchSchema);
-  const meal = await db.mealPlan.update({ where: { id }, data });
-  publish("meals");
-  return ok(meal);
-}, { admin: true });
+export const PATCH = handler(
+  async (req, { params }) => {
+    const { id } = await params;
+    const data = await readJson(req, patchSchema);
+    const meal = await db.mealPlan.update({ where: { id }, data });
+    publish("meals");
+    return ok(meal);
+  },
+  { admin: true },
+);
 
-export const DELETE = handler(async (_req, { params }) => {
-  const { id } = await params;
-  await db.mealPlan.delete({ where: { id } });
-  publish("meals");
-  return ok({ ok: true });
-}, { admin: true });
+export const DELETE = handler(
+  async (_req, { params }) => {
+    const { id } = await params;
+    await db.mealPlan.delete({ where: { id } });
+    publish("meals");
+    return ok({ ok: true });
+  },
+  { admin: true },
+);

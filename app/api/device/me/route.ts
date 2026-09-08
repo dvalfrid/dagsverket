@@ -29,8 +29,8 @@ export const GET = handler(async (req) => {
       person: p.person,
       widgets: widgets.length
         ? widgets
-        : DEFAULT_WIDGETS[(p.type as keyof typeof DEFAULT_WIDGETS) ?? "family"] ??
-          DEFAULT_WIDGETS.family,
+        : (DEFAULT_WIDGETS[(p.type as keyof typeof DEFAULT_WIDGETS) ?? "family"] ??
+          DEFAULT_WIDGETS.family),
     },
   });
 });

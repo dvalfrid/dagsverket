@@ -104,7 +104,5 @@ export async function isAdmin(): Promise<boolean> {
 
 /** For route handlers: returns a 401 Response when not authenticated, else null. */
 export async function requireAdmin(): Promise<Response | null> {
-  return (await isAdmin())
-    ? null
-    : Response.json({ error: "unauthorized" }, { status: 401 });
+  return (await isAdmin()) ? null : Response.json({ error: "unauthorized" }, { status: 401 });
 }

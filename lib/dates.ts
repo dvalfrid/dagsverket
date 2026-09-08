@@ -23,9 +23,7 @@ export function keyToDate(key: string): Date {
 }
 
 export function addDays(key: string, days: number): string {
-  return new Date(keyToDate(key).getTime() + days * DAY_MS)
-    .toISOString()
-    .slice(0, 10);
+  return new Date(keyToDate(key).getTime() + days * DAY_MS).toISOString().slice(0, 10);
 }
 
 /** 0 = Monday .. 6 = Sunday for a date key. */

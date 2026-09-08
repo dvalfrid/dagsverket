@@ -19,17 +19,20 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import { GripVertical, Plus, X } from "lucide-react";
 import { apiFetch, useLiveData } from "@/lib/useLiveData";
-import {
-  WIDGET_TYPES,
-  WIDGET_SIZES,
-  type WidgetConfig,
-  type WidgetType,
-} from "@/lib/widgets";
+import { WIDGET_TYPES, WIDGET_SIZES, type WidgetConfig, type WidgetType } from "@/lib/widgets";
 import { Button, Field, inputClass, cn } from "../ui";
 import { DeleteButton } from "./parts";
 
-interface Person { id: string; name: string; avatarEmoji: string }
-interface Feed { id: string; name: string; color: string }
+interface Person {
+  id: string;
+  name: string;
+  avatarEmoji: string;
+}
+interface Feed {
+  id: string;
+  name: string;
+  color: string;
+}
 export interface AdminProfile {
   id: string;
   name: string;
@@ -41,7 +44,12 @@ export interface AdminProfile {
 }
 
 function newWidget(type: WidgetType): WidgetConfig {
-  return { id: `w-${type}-${Math.random().toString(36).slice(2, 7)}`, type, size: "md", options: {} };
+  return {
+    id: `w-${type}-${Math.random().toString(36).slice(2, 7)}`,
+    type,
+    size: "md",
+    options: {},
+  };
 }
 
 export function ProfileEditor({
@@ -129,11 +137,17 @@ export function ProfileEditor({
           >
             <option value="">–</option>
             {people.map((p) => (
-              <option key={p.id} value={p.id}>{p.avatarEmoji} {p.name}</option>
+              <option key={p.id} value={p.id}>
+                {p.avatarEmoji} {p.name}
+              </option>
             ))}
           </select>
         </Field>
-        <DeleteButton onConfirm={() => apiFetch(`/api/profiles/${profile.id}`, { method: "DELETE" }).then(onChanged)} />
+        <DeleteButton
+          onConfirm={() =>
+            apiFetch(`/api/profiles/${profile.id}`, { method: "DELETE" }).then(onChanged)
+          }
+        />
       </div>
 
       <div>
@@ -235,7 +249,11 @@ function WidgetRow({
           <GripVertical size={16} />
         </button>
         <span className="flex-1 text-sm font-medium">{label}</span>
-        <button onClick={onRemove} className="text-text-subtle hover:text-danger" aria-label="remove">
+        <button
+          onClick={onRemove}
+          className="text-text-subtle hover:text-danger"
+          aria-label="remove"
+        >
           <X size={15} />
         </button>
       </div>
@@ -248,7 +266,9 @@ function WidgetRow({
             className={inputClass("w-20 py-1")}
           >
             {WIDGET_SIZES.map((s) => (
-              <option key={s} value={s}>{s.toUpperCase()}</option>
+              <option key={s} value={s}>
+                {s.toUpperCase()}
+              </option>
             ))}
           </select>
         </Control>
