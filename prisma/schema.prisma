@@ -1,0 +1,158 @@
+// Dagsverket — family dashboard schema (SQLite).
+// SQLite has no native enums; string fields document their allowed values inline.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Setting {
+  key   String @id
+  value String
+}
+
+model Person {
+  id          String   @id @default(cuid())
+  name        String
+  color       String   @default("#6c8cff")
+  avatarEmoji String   @default("🙂")
+  isChild     Boolean  @default(false)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  chores          Chore[]
+  choreDone       ChoreCompletion[]
+  shoppingAdded   ShoppingItem[]
+  profiles        Profile[]
+}
+
+model Profile {
+  id          String   @id @default(cuid())
+  name        String
+  // "admin" | "family" | "child"
+  type        String   @default("family")
+  // "sv" | "en" | null -> fall back to default_locale
+  locale      String?
+  // "dark" | "light"
+  theme       String   @default("dark")
+  personId    String?
+  person      Person?  @relation(fields: [personId], references: [id], onDelete: SetNull)
+  // JSON array: [{ id, type, size: "sm"|"md"|"lg"|"xl", order, options }]
+  widgetsJson String   @default("[]")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  devices Device[]
+}
+
+model Device {
+  id          String   @id @default(cuid())
+  name        String   @default("Ny enhet")
+  // Short human-friendly code shown on the pairing screen; cleared once paired.
+  pairingCode String?  @unique
+  pairedAt    DateTime?
+  lastSeenAt  DateTime?
+  userAgent   String?
+  profileId   String?
+  profile     Profile? @relation(fields: [profileId], references: [id], onDelete: SetNull)
+  createdAt   DateTime @default(now())
+}
+
+model Chore {
+  id           String   @id @default(cuid())
+  title        String
+  note         String?
+  personId     String?
+  person       Person?  @relation(fields: [personId], references: [id], onDelete: SetNull)
+  // "daily" | "weekdays" | "weekly" | "custom"
+  recurrence   String   @default("weekly")
+  // Bitmask Mon..Sun = bits 0..6. Used by "weekly" and "custom".
+  weekdaysMask Int      @default(0)
+  active       Boolean  @default(true)
+  sortOrder    Int      @default(0)
+  createdAt    DateTime @default(now())
+
+  completions ChoreCompletion[]
+}
+
+model ChoreCompletion {
+  id          String   @id @default(cuid())
+  choreId     String
+  chore       Chore    @relation(fields: [choreId], references: [id], onDelete: Cascade)
+  personId    String?
+  person      Person?  @relation(fields: [personId], references: [id], onDelete: SetNull)
+  // Local date "YYYY-MM-DD" the chore was ticked for.
+  date        String
+  completedAt DateTime @default(now())
+
+  @@unique([choreId, date])
+  @@index([date])
+}
+
+model CalendarFeed {
+  id           String    @id @default(cuid())
+  name         String
+  url          String
+  color        String    @default("#6c8cff")
+  enabled      Boolean   @default(true)
+  lastSyncedAt DateTime?
+  lastError    String?
+  createdAt    DateTime  @default(now())
+
+  events CalendarEvent[]
+}
+
+model CalendarEvent {
+  id         String        @id @default(cuid())
+  feedId     String?
+  feed       CalendarFeed? @relation(fields: [feedId], references: [id], onDelete: Cascade)
+  // Stable id from the ICS source (UID[/recurrence-id]); null for local events (v2).
+  externalId String?
+  title      String
+  start      DateTime
+  end        DateTime
+  allDay     Boolean       @default(false)
+  location   String?
+  notes      String?
+  // "ics" | "local"
+  source     String        @default("ics")
+  updatedAt  DateTime      @updatedAt
+
+  @@unique([feedId, externalId])
+  @@index([start])
+}
+
+model ShoppingItem {
+  id              String   @id @default(cuid())
+  name            String
+  quantity        String?
+  category        String?
+  checked         Boolean  @default(false)
+  addedByPersonId String?
+  addedBy         Person?  @relation(fields: [addedByPersonId], references: [id], onDelete: SetNull)
+  sortOrder       Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([checked])
+}
+
+model MealPlan {
+  id        String   @id @default(cuid())
+  // Local date "YYYY-MM-DD".
+  date      String
+  // "lunch" | "dinner"
+  slot      String   @default("dinner")
+  title     String
+  recipeUrl String?
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([date, slot])
+  @@index([date])
+}

@@ -1,0 +1,12 @@
+node_modules
+.next
+.git
+*.log
+dev.db
+dev.db-journal
+prisma/*.db
+prisma/*.db-journal
+cookies.txt
+*.html
+.env
+.DS_Store

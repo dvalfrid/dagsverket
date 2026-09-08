@@ -1,0 +1,210 @@
+{
+  "app": {
+    "name": "Dagsverket",
+    "tagline": "The family dashboard"
+  },
+  "common": {
+    "add": "Add",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "loading": "Loading…",
+    "error": "Something went wrong",
+    "retry": "Try again",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "yesterday": "Yesterday",
+    "week": "Week {n}",
+    "none": "None",
+    "all": "All",
+    "everyone": "Everyone"
+  },
+  "pair": {
+    "title": "Pair this screen",
+    "intro": "Open Admin on another device and enter the code below to link this screen to a profile.",
+    "codeLabel": "Pairing code",
+    "waiting": "Waiting for approval…",
+    "paired": "Done! Opening the dashboard…",
+    "help": "The code refreshes automatically. Keep this page open."
+  },
+  "dashboard": {
+    "unpairedTitle": "No profile linked",
+    "unpairedBody": "This device hasn't been paired yet.",
+    "goToPairing": "Show pairing code",
+    "openAdmin": "Admin",
+    "offline": "No connection to the server"
+  },
+  "widget": {
+    "clock": { "title": "Clock" },
+    "calendar": {
+      "title": "Calendar",
+      "empty": "No events",
+      "allDay": "All day",
+      "moreEvents": "+{n} more",
+      "noneInWindow": "Nothing in the next {days} days — coming up:"
+    },
+    "chores": {
+      "title": "Chores",
+      "today": "Today",
+      "week": "This week",
+      "empty": "No chores",
+      "doneCount": "{done} of {total} done",
+      "assignedTo": "Assigned to {name}",
+      "unassigned": "Unassigned"
+    },
+    "shopping": {
+      "title": "Shopping list",
+      "placeholder": "Add an item…",
+      "empty": "The list is empty",
+      "clearChecked": "Clear checked",
+      "checkedCount": "{n} checked"
+    },
+    "meals": {
+      "title": "Dinners",
+      "empty": "No dinner planned",
+      "toShopping": "Add to shopping list",
+      "lunch": "Lunch",
+      "dinner": "Dinner"
+    }
+  },
+  "admin": {
+    "title": "Admin",
+    "backToDashboard": "To the dashboard",
+    "saved": "Saved",
+    "confirmDelete": "Really delete?",
+    "nav": {
+      "overview": "Overview",
+      "people": "People",
+      "devices": "Devices",
+      "profiles": "Profiles",
+      "chores": "Chores",
+      "calendar": "Calendar",
+      "meals": "Dinners",
+      "settings": "Settings"
+    },
+    "login": {
+      "title": "Admin sign-in",
+      "pinLabel": "PIN",
+      "submit": "Sign in",
+      "wrong": "Wrong PIN",
+      "logout": "Sign out"
+    },
+    "people": {
+      "title": "People",
+      "add": "New person",
+      "name": "Name",
+      "color": "Color",
+      "emoji": "Symbol",
+      "isChild": "Child"
+    },
+    "devices": {
+      "title": "Devices",
+      "pending": "Waiting to pair",
+      "paired": "Paired devices",
+      "enterCode": "Enter pairing code",
+      "assignProfile": "Choose profile",
+      "rename": "Rename",
+      "lastSeen": "Last seen",
+      "never": "never",
+      "approve": "Pair",
+      "clearPending": "Clear waiting"
+    },
+    "profiles": {
+      "title": "Profiles",
+      "add": "New profile",
+      "name": "Name",
+      "type": "Type",
+      "typeAdmin": "Admin",
+      "typeFamily": "Family",
+      "typeChild": "Child",
+      "locale": "Language",
+      "localeDefault": "Default",
+      "theme": "Theme",
+      "themeDark": "Dark",
+      "themeLight": "Light",
+      "person": "Linked person",
+      "widgets": "Widgets",
+      "widgetsHint": "Add widgets below and drag the handle to reorder. Order controls placement on screen.",
+      "opt": {
+        "size": "Size",
+        "days": "Days ahead",
+        "scope": "Which chores",
+        "view": "View",
+        "hourStart": "From hour",
+        "hourEnd": "To hour",
+        "feeds": "Calendars",
+        "showDate": "Show date",
+        "showWeek": "Show week number"
+      },
+      "scopeAll": "Everyone",
+      "scopePerson": "Only the profile's person",
+      "viewToday": "Today's list",
+      "viewWeek": "Whole week",
+      "calViewAgenda": "Agenda (list)",
+      "calViewWeek": "Week (timetable)",
+      "help": {
+        "clock": "Large clock with today's date. Turn on the week number if you want it on the wall.",
+        "calendar": "Events from your calendar feeds. ‘View’: Agenda lists upcoming events (‘Days ahead’ 1–90 sets the horizon; if nothing falls in it, the next events still show). Week shows Mon–Sun as a timetable between ‘From hour’ and ‘To hour’ — best at size L or XL. ‘Calendars’: tick which feeds this profile may see (all if none ticked). On screen you can then toggle each calendar with the buttons at the top of the widget — the choice is remembered per iPad.",
+        "chores": "Chores to check off. ‘Which chores’: everyone, or only the person this profile is linked to (good for kids' own screens). ‘View’: today's list or a whole-week grid.",
+        "shopping": "Shared shopping list. Every paired screen can add items and check them off — changes appear on the other screens instantly.",
+        "meals": "Planned dinners. ‘Days ahead’ (1–21) sets how many days are listed, starting today."
+      }
+    },
+    "chores": {
+      "title": "Chores",
+      "add": "New chore",
+      "choreTitle": "What to do",
+      "person": "Assigned to",
+      "recurrence": "Repeat",
+      "recurrenceDaily": "Every day",
+      "recurrenceWeekdays": "Weekdays",
+      "recurrenceWeekly": "Certain weekdays",
+      "recurrenceCustom": "Custom schedule",
+      "weekdays": "Weekdays",
+      "active": "Active"
+    },
+    "calendar": {
+      "title": "Calendar feeds",
+      "add": "New feed",
+      "feedName": "Name",
+      "url": "ICS link",
+      "color": "Color",
+      "enabled": "Enabled",
+      "syncNow": "Sync now",
+      "lastSynced": "Last synced",
+      "protonHint": "In Proton Calendar: share the calendar and copy the link ending in .ics."
+    },
+    "meals": {
+      "title": "Dinner planning",
+      "date": "Date",
+      "slot": "Meal",
+      "meal": "Dish",
+      "recipeUrl": "Recipe (link)"
+    },
+    "settings": {
+      "title": "Settings",
+      "changePin": "Change PIN",
+      "newPin": "New PIN",
+      "timezone": "Timezone",
+      "defaultLocale": "Default language"
+    }
+  },
+  "weekday": {
+    "mon": "Monday",
+    "tue": "Tuesday",
+    "wed": "Wednesday",
+    "thu": "Thursday",
+    "fri": "Friday",
+    "sat": "Saturday",
+    "sun": "Sunday",
+    "monShort": "Mon",
+    "tueShort": "Tue",
+    "wedShort": "Wed",
+    "thuShort": "Thu",
+    "friShort": "Fri",
+    "satShort": "Sat",
+    "sunShort": "Sun"
+  }
+}

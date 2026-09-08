@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+/*
+ * Dagsverket design tokens.
+ * Dark is the default (wall display); [data-theme="light"] opts a profile into light.
+ */
+:root,
+[data-theme="dark"] {
+  --bg: #0b0f17;
+  --bg-elevated: #10151f;
+  --surface: #151b28;
+  --surface-2: #1c2331;
+  --surface-hover: #222b3c;
+  --border: #2a3346;
+  --border-strong: #3a465f;
+
+  --text: #f2f5fa;
+  --text-muted: #a9b4c6;
+  --text-subtle: #6b7688;
+
+  --accent: #6c8cff;
+  --accent-strong: #5577ff;
+  --accent-fg: #ffffff;
+  --accent-soft: #6c8cff1f;
+
+  --success: #3ecf8e;
+  --warning: #f5b544;
+  --danger: #ff6b6b;
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.28);
+  --shadow-pop: 0 8px 40px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="light"] {
+  --bg: #f4f6fb;
+  --bg-elevated: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f7f9fc;
+  --surface-hover: #eef2f8;
+  --border: #e2e7f0;
+  --border-strong: #cdd5e2;
+
+  --text: #131722;
+  --text-muted: #4f5a6d;
+  --text-subtle: #8a94a6;
+
+  --accent: #3a5bff;
+  --accent-strong: #2f4de0;
+  --accent-fg: #ffffff;
+  --accent-soft: #3a5bff14;
+
+  --success: #129e6a;
+  --warning: #c67f12;
+  --danger: #d93b3b;
+
+  --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.06), 0 8px 24px rgba(16, 24, 40, 0.08);
+  --shadow-pop: 0 8px 40px rgba(16, 24, 40, 0.16);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-hover: var(--surface-hover);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-text-subtle: var(--text-subtle);
+
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-soft: var(--accent-soft);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Kiosk niceties for the wall iPad. */
+@media (display-mode: standalone) {
+  body {
+    overscroll-behavior: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+}
+
+@layer utilities {
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-card);
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

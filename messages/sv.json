@@ -1,0 +1,210 @@
+{
+  "app": {
+    "name": "Dagsverket",
+    "tagline": "Familjens dashboard"
+  },
+  "common": {
+    "add": "Lägg till",
+    "save": "Spara",
+    "cancel": "Avbryt",
+    "delete": "Ta bort",
+    "edit": "Redigera",
+    "close": "Stäng",
+    "loading": "Laddar…",
+    "error": "Något gick fel",
+    "retry": "Försök igen",
+    "today": "Idag",
+    "tomorrow": "Imorgon",
+    "yesterday": "Igår",
+    "week": "Vecka {n}",
+    "none": "Inget",
+    "all": "Alla",
+    "everyone": "Alla"
+  },
+  "pair": {
+    "title": "Para den här skärmen",
+    "intro": "Öppna Admin på en annan enhet och ange koden nedan för att koppla skärmen till en profil.",
+    "codeLabel": "Parningskod",
+    "waiting": "Väntar på godkännande…",
+    "paired": "Klart! Öppnar dashboarden…",
+    "help": "Koden uppdateras automatiskt. Låt sidan vara öppen."
+  },
+  "dashboard": {
+    "unpairedTitle": "Ingen profil kopplad",
+    "unpairedBody": "Den här enheten är inte parad än.",
+    "goToPairing": "Visa parningskod",
+    "openAdmin": "Admin",
+    "offline": "Ingen kontakt med servern"
+  },
+  "widget": {
+    "clock": { "title": "Klocka" },
+    "calendar": {
+      "title": "Kalender",
+      "empty": "Inga händelser",
+      "allDay": "Heldag",
+      "moreEvents": "+{n} till",
+      "noneInWindow": "Inget de närmaste {days} dagarna – kommande:"
+    },
+    "chores": {
+      "title": "Sysslor",
+      "today": "Idag",
+      "week": "Veckan",
+      "empty": "Inga sysslor",
+      "doneCount": "{done} av {total} klara",
+      "assignedTo": "Ansvarig: {name}",
+      "unassigned": "Ingen ansvarig"
+    },
+    "shopping": {
+      "title": "Inköpslista",
+      "placeholder": "Lägg till vara…",
+      "empty": "Listan är tom",
+      "clearChecked": "Rensa avbockade",
+      "checkedCount": "{n} avbockade"
+    },
+    "meals": {
+      "title": "Middagar",
+      "empty": "Ingen middag planerad",
+      "toShopping": "Till inköpslistan",
+      "lunch": "Lunch",
+      "dinner": "Middag"
+    }
+  },
+  "admin": {
+    "title": "Admin",
+    "backToDashboard": "Till dashboarden",
+    "saved": "Sparat",
+    "confirmDelete": "Ta bort på riktigt?",
+    "nav": {
+      "overview": "Översikt",
+      "people": "Personer",
+      "devices": "Enheter",
+      "profiles": "Profiler",
+      "chores": "Sysslor",
+      "calendar": "Kalender",
+      "meals": "Middagar",
+      "settings": "Inställningar"
+    },
+    "login": {
+      "title": "Admin-inloggning",
+      "pinLabel": "PIN-kod",
+      "submit": "Logga in",
+      "wrong": "Fel PIN-kod",
+      "logout": "Logga ut"
+    },
+    "people": {
+      "title": "Personer",
+      "add": "Ny person",
+      "name": "Namn",
+      "color": "Färg",
+      "emoji": "Symbol",
+      "isChild": "Barn"
+    },
+    "devices": {
+      "title": "Enheter",
+      "pending": "Väntar på parning",
+      "paired": "Parade enheter",
+      "enterCode": "Ange parningskod",
+      "assignProfile": "Välj profil",
+      "rename": "Byt namn",
+      "lastSeen": "Senast sedd",
+      "never": "aldrig",
+      "approve": "Para",
+      "clearPending": "Rensa väntande"
+    },
+    "profiles": {
+      "title": "Profiler",
+      "add": "Ny profil",
+      "name": "Namn",
+      "type": "Typ",
+      "typeAdmin": "Admin",
+      "typeFamily": "Familj",
+      "typeChild": "Barn",
+      "locale": "Språk",
+      "localeDefault": "Standard",
+      "theme": "Tema",
+      "themeDark": "Mörkt",
+      "themeLight": "Ljust",
+      "person": "Kopplad person",
+      "widgets": "Widgets",
+      "widgetsHint": "Lägg till widgets nedan och dra i handtaget för att ändra ordning. Ordningen styr placeringen på skärmen.",
+      "opt": {
+        "size": "Storlek",
+        "days": "Dagar framåt",
+        "scope": "Vilka sysslor",
+        "view": "Vy",
+        "hourStart": "Från kl",
+        "hourEnd": "Till kl",
+        "feeds": "Kalendrar",
+        "showDate": "Visa datum",
+        "showWeek": "Visa veckonummer"
+      },
+      "scopeAll": "Alla personer",
+      "scopePerson": "Bara profilens person",
+      "viewToday": "Dagens lista",
+      "viewWeek": "Hela veckan",
+      "calViewAgenda": "Agenda (lista)",
+      "calViewWeek": "Vecka (schema)",
+      "help": {
+        "clock": "Stor klocka med dagens datum. Slå på veckonummer om ni vill se v.nr på väggen.",
+        "calendar": "Kalenderhändelser från flödena. ‘Vy’: Agenda listar kommande händelser (‘Dagar framåt’ 1–90 styr hur långt fram; finns inget visas ändå nästa händelser). Vecka visar hela veckan mån–sön som ett tidsschema mellan ‘Från kl’ och ‘Till kl’ – funkar bäst i storlek L eller XL. ‘Kalendrar’: bocka i vilka flöden profilen får se (alla i om inget kryssas). På skärmen kan man sedan tända/släcka varje kalender med knapparna högst upp i widgeten – valet minns per iPad.",
+        "chores": "Sysslor att bocka av. ‘Vilka sysslor’: alla i familjen, eller bara den person som profilen är kopplad till (bra för barnens egna skärmar). ‘Vy’: dagens lista eller ett rutnät för hela veckan.",
+        "shopping": "Delad inköpslista. Alla parade skärmar kan lägga till varor och bocka av – ändringar syns direkt på övriga skärmar.",
+        "meals": "Planerade middagar. ‘Dagar framåt’ (1–21) styr hur många dagar som listas, med start idag."
+      }
+    },
+    "chores": {
+      "title": "Sysslor",
+      "add": "Ny syssla",
+      "choreTitle": "Vad ska göras",
+      "person": "Ansvarig",
+      "recurrence": "Upprepning",
+      "recurrenceDaily": "Varje dag",
+      "recurrenceWeekdays": "Vardagar",
+      "recurrenceWeekly": "Vissa veckodagar",
+      "recurrenceCustom": "Eget schema",
+      "weekdays": "Veckodagar",
+      "active": "Aktiv"
+    },
+    "calendar": {
+      "title": "Kalenderflöden",
+      "add": "Nytt flöde",
+      "feedName": "Namn",
+      "url": "ICS-länk",
+      "color": "Färg",
+      "enabled": "Aktivt",
+      "syncNow": "Synka nu",
+      "lastSynced": "Senast synkad",
+      "protonHint": "I Proton Calendar: dela kalendern och kopiera länken som slutar på .ics."
+    },
+    "meals": {
+      "title": "Middagsplanering",
+      "date": "Datum",
+      "slot": "Måltid",
+      "meal": "Rätt",
+      "recipeUrl": "Recept (länk)"
+    },
+    "settings": {
+      "title": "Inställningar",
+      "changePin": "Byt PIN-kod",
+      "newPin": "Ny PIN-kod",
+      "timezone": "Tidszon",
+      "defaultLocale": "Standardspråk"
+    }
+  },
+  "weekday": {
+    "mon": "Måndag",
+    "tue": "Tisdag",
+    "wed": "Onsdag",
+    "thu": "Torsdag",
+    "fri": "Fredag",
+    "sat": "Lördag",
+    "sun": "Söndag",
+    "monShort": "Mån",
+    "tueShort": "Tis",
+    "wedShort": "Ons",
+    "thuShort": "Tor",
+    "friShort": "Fre",
+    "satShort": "Lör",
+    "sunShort": "Sön"
+  }
+}
