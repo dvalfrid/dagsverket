@@ -45,15 +45,29 @@ default `1234`), gå till **Enheter**, para skärmen mot en profil – klart.
 
 ## Distribuera på NAS (Docker)
 
+### Med färdig image (ingen källkod, ingen Node behövs)
+
+CI bygger och publicerar en image till GitHub Container Registry vid varje push
+till `main` (tagg `latest`) och vid versionstaggar (`vX.Y.Z`).
+
 ```bash
-# på NAS:en, i repo-mappen
-printf 'AUTH_SECRET=%s\nADMIN_PIN=1234\n' "$(openssl rand -hex 32)" > .env
-docker compose up -d --build
+mkdir dagsverket && cd dagsverket
+curl -fsSLO https://raw.githubusercontent.com/dvalfrid/dagsverket/main/docker-compose.yml
+printf 'AUTH_SECRET=%s\nADMIN_PIN=1234\nTZ=Europe/Stockholm\n' "$(openssl rand -hex 32)" > .env
+docker compose pull
+docker compose up -d
 ```
+
+Uppdatera senare: `docker compose pull && docker compose up -d`.
+
+Vill du hellre bygga själv från en klon: `docker compose up -d --build`.
+
+### Gemensamt
 
 * Data ligger i den namngivna volymen `dagsverket-data` (`/data/dagsverket.db`).
 * Containern kör `prisma migrate deploy` och en idempotent seed vid varje start.
 * Nå dashboarden på `http://<nas-ip>:3000`.
+* Bygger bara för `linux/amd64` (de flesta NAS-Docker-värdar). ARM-NAS: se kommentaren i `.github/workflows/ci.yml`.
 
 Byt admin-PIN i **Admin → Inställningar** efter första inloggningen.
 

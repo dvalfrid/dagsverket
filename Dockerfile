@@ -21,6 +21,9 @@ RUN npx prisma generate && npm run build
 
 # --- runtime --------------------------------------------------------------
 FROM base AS runner
+LABEL org.opencontainers.image.source="https://github.com/dvalfrid/dagsverket" \
+      org.opencontainers.image.description="Dagsverket — family dashboard" \
+      org.opencontainers.image.licenses="MIT"
 ENV NODE_ENV=production
 COPY --from=build /app ./
 RUN mkdir -p /data && chown -R node:node /app /data

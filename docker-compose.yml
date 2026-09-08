@@ -1,15 +1,17 @@
 services:
   dagsverket:
+    # Prebuilt image published by CI. `docker compose pull` to fetch/update it.
+    image: ghcr.io/dvalfrid/dagsverket:latest
+    # …or build from a source checkout instead: `docker compose build`
     build: .
-    image: dagsverket:latest
     container_name: dagsverket
     restart: unless-stopped
     ports:
       - "3000:3000"
     environment:
       DATABASE_URL: "file:/data/dagsverket.db"
-      TZ: "Europe/Stockholm"
-      # Set these in a local .env next to this file (compose reads it automatically).
+      TZ: "${TZ:-Europe/Stockholm}"
+      # Put these in a .env file next to this compose file (compose reads it automatically).
       ADMIN_PIN: "${ADMIN_PIN:-1234}"
       AUTH_SECRET: "${AUTH_SECRET:?Set AUTH_SECRET in .env — generate with: openssl rand -hex 32}"
     volumes:
