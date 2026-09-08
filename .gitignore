@@ -55,3 +55,7 @@ cookies*.txt
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# claude — share skills, keep local settings out
+.claude/settings.local.json
+.claude/*.local.json

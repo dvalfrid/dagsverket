@@ -1,6 +1,6 @@
 {
   "name": "dagsverket",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "private": true,
   "license": "MIT",
   "engines": {
@@ -12,6 +12,8 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "test": "vitest run",
     "test:watch": "vitest",
     "db:generate": "prisma generate",
@@ -52,6 +54,8 @@
     "@vitejs/plugin-react": "^6.1.1",
     "eslint": "^9",
     "eslint-config-next": "16.3.4",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.9.6",
     "prisma": "^6.19.3",
     "tailwindcss": "^4",
     "tsx": "^4.23.13",
