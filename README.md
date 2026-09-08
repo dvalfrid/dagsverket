@@ -47,8 +47,13 @@ default `1234`), gå till **Enheter**, para skärmen mot en profil – klart.
 
 ### Med färdig image (ingen källkod, ingen Node behövs)
 
-CI bygger och publicerar en image till GitHub Container Registry vid varje push
-till `main` (tagg `latest`) och vid versionstaggar (`vX.Y.Z`).
+CI publicerar images till GitHub Container Registry:
+
+| Tagg                                 | När                          | Använd för                                |
+| ------------------------------------ | ---------------------------- | ----------------------------------------- |
+| `ghcr.io/dvalfrid/dagsverket:latest` | vid varje release (`vX.Y.Z`) | **normal drift** – följer senaste release |
+| `:X.Y.Z` / `:X.Y` / `:X`             | vid varje release            | pinna en exakt version                    |
+| `:main` / `:sha-<kort>`              | vid varje push till `main`   | testa senaste (kan vara ostabilt)         |
 
 ```bash
 mkdir dagsverket && cd dagsverket
@@ -59,6 +64,8 @@ docker compose up -d
 ```
 
 Uppdatera senare: `docker compose pull && docker compose up -d`.
+`docker-compose.yml` använder `:latest` – pinna genom att sätta t.ex.
+`image: ghcr.io/dvalfrid/dagsverket:0.1.0`.
 
 Vill du hellre bygga själv från en klon: `docker compose up -d --build`.
 

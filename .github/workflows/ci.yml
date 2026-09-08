@@ -53,7 +53,10 @@ jobs:
         run: npm run build
 
   # Build the Docker image on every run so a broken Dockerfile fails a PR.
-  # Only push it to GHCR from main / version tags, and only after `verify` passes.
+  # Push tags to GHCR only after `verify` passes:
+  #   - push to main  -> :main  and  :sha-<short>   (bleeding edge, for testing)
+  #   - tag vX.Y.Z     -> :X.Y.Z  :X.Y  :X  :latest  (a real release)
+  #   - pull request   -> build only, nothing pushed
   image:
     needs: verify
     runs-on: ubuntu-latest
@@ -78,12 +81,14 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ghcr.io/${{ github.repository }}
+          # `latest` is applied automatically to the newest semver tag only
+          # (metadata-action's default flavor: latest=auto).
           tags: |
-            type=raw,value=latest,enable={{is_default_branch}}
-            type=sha,enable={{is_default_branch}}
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
+            type=raw,value=main,enable={{is_default_branch}}
+            type=sha,enable={{is_default_branch}}
             type=ref,event=pr
 
       - name: Build and push
